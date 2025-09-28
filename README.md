@@ -6,7 +6,7 @@
 ### * Vicky Singh	ivickysingh@yahoo.com
 ### * Kenneth Kariuki	kenkarish1935@gmail.com
 
-This repository contains the material developed for my Capstone Project in the Master of Science in Financial Engineering program at WorldQuant University. The study explores how newer tools from machine learning and deep learning can be applied to portfolio construction. The central aim is to build an approach that is transparent and robust, while still practical for trading portfolios of liquid assets.
+This repository contains the material developed for the Capstone Project in the Master of Science in Financial Engineering program at WorldQuant University. The study explores how newer tools from machine learning and deep learning can be applied to portfolio construction. The central aim is to build an approach that is transparent and robust, while still practical for trading portfolios of liquid assets.
 
 ## Project Overview
 The field of portfolio allocation owes much to Harry Markowitz, whose Modern Portfolio Theory in the 1950s gave finance its first structured way to think about diversification and risk. Later, the Black–Litterman model tried to make the approach more stable by incorporating investor views. These frameworks still dominate textbooks and courses. But their limitations are clear: estimates are noisy, correlations often spike during crises, and the assumption of normal returns rarely matches market behavior.
