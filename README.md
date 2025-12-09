@@ -9,7 +9,7 @@ The project evaluates and compares the performance of five distinct portfolio ma
 
 ## Project Overview
 
-[cite_start]Traditional portfolio optimization methods, such as **Markowitz Mean-Variance Optimization (MVO)**, often struggle due to their sensitivity to input errors and their inability to adapt to non-linear market dynamics. This project addresses these limitations by implementing and backtesting adaptive, data-driven strategies.
+Traditional portfolio optimization methods, such as **Markowitz Mean-Variance Optimization (MVO)**, often struggle due to their sensitivity to input errors and their inability to adapt to non-linear market dynamics. This project addresses these limitations by implementing and backtesting adaptive, data-driven strategies.
 
 ### Novel Contributions
 1.  **Reinforcement Learning (PPO) Strategy**: Implementation of a **Proximal Policy Optimization (PPO)** agent to learn dynamic, risk-adjusted asset allocation policies
@@ -43,7 +43,6 @@ The comparison of the five strategies revealed that AI-driven methods and the si
 | Random Forest | 519.64% | 47.05% | 27.98% | 1.68 | -42.65% |
 | Hybrid Ensemble | 502.93% | 46.2% | 28.69% | 1.61 | -45.75% |
 | Markowitz | 428.9% | 42.2% | **34.52%** | **1.22** | **-57.97%** |
-[cite: 45]
 
 * **Top Performer**: The **Reinforcement Learning (PPO) strategy** delivered the highest return and the best risk-adjusted performance (Sharpe Ratio).
 * **Traditional Underperformance**: The **Traditional Markowitz model** significantly underperformed and was the loser, exhibiting the highest volatility and maximum drawdown risk (-57.97%).
@@ -51,17 +50,16 @@ The comparison of the five strategies revealed that AI-driven methods and the si
 
 ***
 
-## Repository Structure & How to Run
+## Application Structure & How to Run
 
-The main deliverable is contained within a single executable notebook.
+The application is contained within a single executable notebook.
 
-### File Structure
+### Deliverales Structure
 
 * `M7 - Final_project.ipynb`: The core code, including data fetching, model implementations (Markowitz, ML, DL, PPO, Ensemble), backtesting, and visualization logic.
 * `M7 - Final report.pdf`: The full academic report detailing the methodology, theoretical framework, and results.
 * `M7 - Solution Design Document.pdf`: The architectural overview and design choices for the project.
-
-### Prerequisites
+* `M7 - Presentation` folder: Folder containing the presentation of the project.
 
 The project is built using **Python 3.8+**. Key dependencies include:
 
