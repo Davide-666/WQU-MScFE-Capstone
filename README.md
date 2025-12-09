@@ -1,53 +1,103 @@
-##### (work in progress)
-# WQU-MScFE-Capstone
-# Hybrid Deep Learning for Portfolio Allocation
-### Student Group 11196
-### * Davide Freni	davide.freni@gmail.com 
-### * Vicky Singh	ivickysingh@yahoo.com
-### * Kenneth Kariuki	kenkarish1935@gmail.com
+# Beyond Markowitz: An Institutional Analysis of AI-Driven Portfolio Optimization 
 
-This repository contains the material developed for the Capstone Project in the Master of Science in Financial Engineering program at WorldQuant University. The study explores how newer tools from machine learning and deep learning can be applied to portfolio construction. The central aim is to build an approach that is transparent and robust, while still practical for trading portfolios of liquid assets.
+This repository contains the material developed for the Capstone Project in the Master of Science in Financial Engineering program at WorldQuant University,
+e.g the code and documentation for **Smartportfolios**, a new framework for quantitative portfolio allocation that combines traditional finance models with state-of-the-art techniques from **Machine Learning (ML)**, **Deep Learning (DL)**, and **Reinforcement Learning (RL)**.
+
+The project evaluates and compares the performance of five distinct portfolio management strategies on market data from **2023–2024**.
+
+***
 
 ## Project Overview
-The field of portfolio allocation owes much to Harry Markowitz, whose Modern Portfolio Theory in the 1950s gave finance its first structured way to think about diversification and risk. Later, the Black–Litterman model tried to make the approach more stable by incorporating investor views. These frameworks still dominate textbooks and courses. But their limitations are clear: estimates are noisy, correlations often spike during crises, and the assumption of normal returns rarely matches market behavior.
 
-Over time, industry practice has moved in several directions. Robo-advisors grew quickly by making investing easy and cheap, although their models remain fairly rigid. Hedge funds went the other way, developing highly advanced proprietary systems, though these are kept strictly confidential. More recently, open-source projects experimenting with reinforcement learning have generated excitement, but many of these prototypes fail to cope when tested against real market conditions.
+[cite_start]Traditional portfolio optimization methods, such as **Markowitz Mean-Variance Optimization (MVO)**, often struggle due to their sensitivity to input errors and their inability to adapt to non-linear market dynamics. This project addresses these limitations by implementing and backtesting adaptive, data-driven strategies.
 
-This project takes a blended approach. Three techniques form the backbone of the framework:
-* Long Short-Term Memory networks (LSTMs) are used to pick up sequential patterns in returns.
-* Gradient Boosting (XGBoost) sharpens cross-sectional predictions.
-* Reinforcement Learning (RL) allows allocations to shift dynamically as new data comes in.
+### Novel Contributions
+1.  **Reinforcement Learning (PPO) Strategy**: Implementation of a **Proximal Policy Optimization (PPO)** agent to learn dynamic, risk-adjusted asset allocation policies
+2.  **Dynamic Switching Hybrid Ensemble**: A robust ensemble model that dynamically switches between the predictions of multiple models based on changing market conditions.
 
-From the outset, the design placed a strong emphasis on robustness. Liquidity filters, stress scenarios, and Monte Carlo simulations are built directly into the framework. The intention is not simply to show appealing backtests, but to test whether such a system could survive the demands of actual trading.
+***
 
-## Academic Contribution
-The project makes three contributions worth highlighting. First, it demonstrates how several machine learning methods can be integrated into a single portfolio allocation system, bridging a gap between the academic focus on isolated models and the multifaceted challenges of practice. Second, it treats robustness as a central concern rather than an afterthought, by weaving stress tests, liquidity constraints, and extreme-scenario analysis into the evaluation. Finally, it is made reproducible: the methods are documented and can be replicated, which makes the work accessible to academics and potentially useful for fintech practitioners.
+## Strategies Implemented
 
-## Repository Contents
-The repository has been arranged to make the workflow clear:
-* data/: sample financial datasets prepared for confidentiality.
-* notebooks/: exploratory notebooks with experiments and figures.
-* src/: source code for data processing, model training, backtesting, and stress testing.
-* reports/: the written Capstone report with comparative analysis and references.
-* results/: model performance outputs and visualizations.
+The project compares the performance of the following six strategies:
 
-## Results in Brief
-Out-of-sample tests indicate that the hybrid framework can outperform classical mean–variance optimization during volatile periods. It also showed more stability under simulated stress than simple robo-advisory benchmarks. By focusing only on highly liquid assets, the framework avoids many of the execution problems—such as slippage—that often undermine academic strategies.
+| Strategy Category | Model Name | Description |
+| :--- | :--- | :--- |
+| **Traditional** | **Markowitz (Mean-Variance)** | Classical optimization aiming to maximize return for a given level of risk. |
+| **Machine Learning** | **Random Forest** | Uses Random Forest Regression to predict future returns, which are then used for optimization. |
+| **Deep Learning** | **Simple Neural Network** | A basic Neural Network model to predict returns and determine portfolio weights. |
+| **Reinforcement Learning** | **PPO-Agent** | An agent trained with the **Proximal Policy Optimization** algorithm to maximize cumulative reward (return). |
+| **Hybrid** | **Dynamic Ensemble** | A strategy that combines the predictions of Markowitz, ML, DL, and RL, dynamically allocating weights based on market regime. |
+| **Baseline** | **Equal Weight (1/N)** | A simple strategy where assets are equally weighted, serving as a robust benchmark. |
 
-Taken together, the findings suggest that predictive accuracy and robustness can be combined effectively. The framework is both a research contribution and a model with the potential to be applied in practice.
+***
 
-### References (selected)
-Markowitz, Harry. “Portfolio Selection.” The Journal of Finance, 1952.
+## Key Findings
 
-Black, Fischer, and Robert Litterman. “Global Portfolio Optimization.” Financial Analysts Journal, 1992.
+The comparison of the five strategies revealed that AI-driven methods and the simple Equal Weight strategy significantly outperformed traditional optimization models on the 2023–2024 data.
 
-Breiman, Leo. “Random Forests.” Machine Learning, 2001.
+| Strategy | Total Return | CAGR | Volatility | Sharpe Ratio | Max Drawdown |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **RRL (PPO)** | **524.92%** | **47.31%** | 27.99% | **1.69** | **-42.68%** |
+| Equal Weight | 524.58% | 47.3% | 27.99% | 1.69 | -42.72% |
+| Random Forest | 519.64% | 47.05% | 27.98% | 1.68 | -42.65% |
+| Hybrid Ensemble | 502.93% | 46.2% | 28.69% | 1.61 | -45.75% |
+| Markowitz | 428.9% | 42.2% | **34.52%** | **1.22** | **-57.97%** |
+[cite: 45]
 
-Chen, Tianqi, and Carlos Guestrin. “XGBoost: A Scalable Tree Boosting System.” KDD Conference Proceedings, 2016.
+* **Top Performer**: The **Reinforcement Learning (PPO) strategy** delivered the highest return and the best risk-adjusted performance (Sharpe Ratio).
+* **Traditional Underperformance**: The **Traditional Markowitz model** significantly underperformed and was the loser, exhibiting the highest volatility and maximum drawdown risk (-57.97%).
+* **Risk Mitigation**: The AI models successfully minimized drawdowns (to ~43% vs 58% for Markowitz) by prioritizing **Risk Management** and "learning" that broad diversification was safer than concentration.
 
-Hochreiter, Sepp, and Jürgen Schmidhuber. “Long Short-Term Memory.” Neural Computation, 1997.
+***
 
-Moody, John, and Matthew Saffell. “Learning to Trade via Direct Reinforcement.” IEEE Transactions on Neural Networks, 2001.
+## Repository Structure & How to Run
 
-### License
-This repository is provided for academic and research purposes. Please acknowledge the work if you make use of it in your own research or teaching.
+The main deliverable is contained within a single executable notebook.
+
+### File Structure
+
+* `M7 - Final_project.ipynb`: The core code, including data fetching, model implementations (Markowitz, ML, DL, PPO, Ensemble), backtesting, and visualization logic.
+* `M7 - Final report.pdf`: The full academic report detailing the methodology, theoretical framework, and results.
+* `M7 - Solution Design Document.pdf`: The architectural overview and design choices for the project.
+
+### Prerequisites
+
+The project is built using **Python 3.8+**. Key dependencies include:
+
+| Library | Purpose |
+| :--- | :--- |
+| `pandas`, `numpy` | Data manipulation and numerical operations. |
+| `yfinance` | Downloading historical market data. |
+| `scikit-learn` | Machine Learning models (Random Forest, etc.). |
+| `scipy.optimize` | Traditional Mean-Variance Optimization. |
+| `stable-baselines3` (Implied) | Reinforcement Learning PPO Agent. |
+| `matplotlib`, `seaborn`, `plotly` | Data visualization and performance charting. |
+
+### Execution
+
+1.  **Clone the repository.**
+2.  **Install dependencies** (e.g., install libraries like `yfinance`, `scikit-learn`, `stable-baselines3`).
+3.  **Run the Jupyter Notebook**: Open `final_project.ipynb` and execute all cells sequentially. The notebook handles data download (2023-2024), model training, walk-forward backtesting, and result generation.
+
+***
+
+## Future Scope of Work
+
+Potential extensions to the project include:
+
+* **Introduce Real-World Frictions**: Integrate realistic transaction fees, slippage, and market impact into the backtesting model.
+* **Expand Data Horizons**: Extend the backtesting period and the asset universe, along with implementing stronger backtesting methodologies.
+* **Integrate Real-Time ESG Data**: Incorporate dynamic Environmental, Social, and Governance (ESG) data instead of mock scores.
+* **Further Develop the Hybrid Ensemble**: Enhance the dynamic switching logic and robustness of the "Hybrid Ensemble" approach.
+
+***
+
+## Authors & Contact
+* **Student Group 11196**
+* **Vicky Singh** - ivickysingh@yahoo.com
+* **Davide Freni** - davide.freni@gmail.com (Also responsible for **full management of the GitHub project repository** 
+* **Kenneth Kariuki** - kenkarish1935@gmail.com
+
+**Project Repository**: <https://github.com/Davide-666/WQU-MScFE-Capstone> 
+
